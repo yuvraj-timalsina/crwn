@@ -56,7 +56,18 @@ export const createUserDocumentFromAuth = async (
     return userDocRef;
   }
 };
+
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
-  return await createUserWithEmailAndPassword({ auth, email, password });
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    return userCredential;
+  } catch (error) {
+    console.log('error creating the user', error.message);
+    throw error;
+  }
 };

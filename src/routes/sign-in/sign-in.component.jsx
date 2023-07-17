@@ -4,7 +4,12 @@ import {getRedirectResult} from 'firebase/auth'
 
 const SignIn = () => {
     useEffect(() => {
-        const asyncFn = async () => {const response = await getRedirectResult(auth)}
+        const asyncFn = async () => {
+            const response = await getRedirectResult(auth)
+            if (response) {
+                const userDocRef = await createUserDocumentFromAuth(response.user)
+            }
+        }
         asyncFn()
     }, [])
     const logGoogleUser = async () => {

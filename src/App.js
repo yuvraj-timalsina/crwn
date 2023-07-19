@@ -1,7 +1,7 @@
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import Home from './routes/home/home.component'
-import Navigation from './routes/navigation/navigation.component'
-import SignIn from './routes/sign-in/sign-in.component'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Authentication from './routes/authentication/authentication.component';
+import Home from './routes/home/home.component';
+import Navigation from './routes/navigation/navigation.component';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -9,23 +9,21 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <Home />
       },
       {
         path: 'shop',
-        element: <div>I am shop</div>,
+        element: <div>I am shop</div>
       },
       {
-        path: 'sign-in',
-        element: <SignIn />,
+        path: 'auth',
+        element: <Authentication />
       }
     ]
-  },
-])
+  }
+]);
 
 const App = () => {
-  return (
-    <RouterProvider router={router} />
-  )
-}
-export default App
+  return <RouterProvider router={router} />;
+};
+export default App;

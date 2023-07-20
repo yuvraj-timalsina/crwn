@@ -25,7 +25,18 @@ const SignInForm = () => {
       const response = await signInAuthUserWithEmailAndPassword(email, password);
       console.log(response);
       resetFormFields();
-    } catch (error) {}
+    } catch (error) {
+      switch (error.code) {
+        case 'auth/wrong-password':
+          alert('Wrong password');
+          break;
+        case 'auth/user-not-found':
+          alert('User not found');
+          break;
+        default:
+          console.log(error);
+      }
+    }
   };
   const signInWithGoogle = async () => {
     const { user } = await signInWithGooglePopup();
@@ -60,6 +71,7 @@ const SignInForm = () => {
         <div className='buttons-container'>
           <Button type='submit'>Sign In</Button>
           <Button
+            type='button'
             onClick={signInWithGoogle}
             buttonType={'google'}
           >

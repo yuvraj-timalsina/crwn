@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { CartProvider } from './contexts/cart.context';
 import { ProductsProvider } from './contexts/products.context';
 import { UserProvider } from './contexts/user.context';
 import './index.scss';
@@ -11,7 +12,9 @@ root.render(
   <React.StrictMode>
     <UserProvider>
       <ProductsProvider>
-        <App />
+        <CartProvider>
+          <App />
+        </CartProvider>
       </ProductsProvider>
     </UserProvider>
   </React.StrictMode>

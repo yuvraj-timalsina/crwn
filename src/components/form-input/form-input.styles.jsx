@@ -1,14 +1,27 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const subColor = 'grey';
 const mainColor = 'black';
 
-export const FormInputContainer = styled.div`
-  position: relative;
-  margin: 45px 0;
+const shrinkLabelStyles = css`
+  top: -14px;
+  font-size: 12px;
+  color: ${mainColor};
 `;
 
-export const InputElement = styled.input`
+export const FormInputLabel = styled.label`
+  color: ${subColor};
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
+  ${({ shrink }) => shrink && shrinkLabelStyles};
+`;
+
+export const Input = styled.input`
   background: none;
   background-color: white;
   color: ${subColor};
@@ -25,30 +38,16 @@ export const InputElement = styled.input`
     outline: none;
   }
 
-  &:focus ~ label {
-    top: -14px;
-    font-size: 12px;
-    color: ${mainColor};
-  }
-
-  &[type='password'] {
-    letter-spacing: 0.3em;
+  &:focus ~ ${FormInputLabel} {
+    ${shrinkLabelStyles};
   }
 `;
 
-export const FormInputLabel = styled.label`
-  color: ${subColor};
-  font-size: 16px;
-  font-weight: normal;
-  position: absolute;
-  pointer-events: none;
-  left: 5px;
-  top: 10px;
-  transition: 300ms ease all;
+export const Group = styled.div`
+  position: relative;
+  margin: 45px 0;
 
-  &.shrink {
-    top: -14px;
-    font-size: 12px;
-    color: ${mainColor};
+  input[type='password'] {
+    letter-spacing: 0.3em;
   }
 `;

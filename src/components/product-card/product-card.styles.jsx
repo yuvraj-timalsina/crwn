@@ -44,7 +44,7 @@ export const Footer = styled.div`
 `;
 
 export const Name = styled.span`
-  width: 90%;
+  width: 92%;
   margin-bottom: 15px;
 `;
 
